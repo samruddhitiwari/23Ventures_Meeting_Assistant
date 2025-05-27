@@ -2,6 +2,7 @@ import subprocess
 import sys
 import os
 from datetime import datetime
+from parse import parse_query  # NEW IMPORT
 
 def transcribe(input_path: str):
     try:
@@ -34,6 +35,22 @@ def transcribe(input_path: str):
             f.write(result.stdout)
 
         print(f"[✓] Transcript saved to {output_txt}")
+
+        # === NEW: Parse the transcript for dates, actions, topics ===
+        with open(output_txt, "r", encoding="utf-8") as f:
+            transcript = f.read()
+
+        parsed_data = parse_query(transcript)
+        parsed_output_file = os.path.join(output_dir, f"{time_str}_parsed.txt")
+
+        with open(parsed_output_file, "w", encoding="utf-8") as f:
+            f.write("Parsed Info:\n")
+            f.write(f"Date Ranges:\n{parsed_data['date_ranges']}\n")
+            f.write(f"Actions:\n{parsed_data['actions']}\n")
+            f.write(f"Topics:\n{parsed_data['topics']}\n")
+
+        print(f"[✓] Parsed data saved to {parsed_output_file}")
+
     except subprocess.CalledProcessError as e:
         raise RuntimeError(f"Transcription failed: {e}")
     except Exception as e:
