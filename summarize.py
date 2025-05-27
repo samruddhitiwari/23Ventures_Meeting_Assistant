@@ -2,10 +2,10 @@ from transformers import pipeline
 from tkinter import Tk, filedialog, messagebox
 import os
 from datetime import datetime
+from modules.embed import get_embedding  # Add this import
 
 def summarize_text_local(text):
     summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-    # You can control max_length and min_length as needed
     summary_list = summarizer(text, max_length=150, min_length=40, do_sample=False)
     return summary_list[0]['summary_text']
 
@@ -49,7 +49,13 @@ def main():
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(summary)
 
-    messagebox.showinfo("Success", f"Summary saved at:\n{output_file}")
+ 
+    embedding = get_embedding(summary)
+    embedding_file = os.path.join(output_dir, f"{timestamp.strftime('%H-%M-%S')}_summary_embedding.txt")
+    with open(embedding_file, 'w', encoding='utf-8') as f:
+        f.write(','.join(map(str, embedding)))
+
+    messagebox.showinfo("Success", f"Summary and embedding saved at:\n{output_file}\n{embedding_file}")
 
 if __name__ == "__main__":
     main()
