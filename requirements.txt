@@ -1,0 +1,10 @@
+openai
+whisper
+tiktoken
+faiss-cpu
+nltk
+numpy
+torch
+scipy
+pydub
+ffmpeg-python
