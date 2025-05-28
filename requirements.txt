@@ -8,3 +8,6 @@ torch
 scipy
 pydub
 ffmpeg-python
+Flask
+Flask-Cors
+python-dotenv
