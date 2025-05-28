@@ -1,7 +1,8 @@
-import numpy as np
 import spacy
+import os
 
-nlp = spacy.load("en_core_web_md")
+model_path = os.path.join(spacy.util.get_package_path("en_core_web_md"))  # Get the installed model path
+nlp = spacy.load(model_path)  # Load explicitly from the correct location
 
 def get_embedding(text):
     """Generate a single embedding for the entire text."""
