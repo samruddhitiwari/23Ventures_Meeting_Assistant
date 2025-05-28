@@ -1,8 +1,31 @@
+import sys
+print("Python version:", sys.version)
+print("Installed packages:", sys.modules.keys())
+
+import tensorflow as tf
+print("TensorFlow version:", tf.__version__)
+
+from tensorflow import keras
+print("Keras version:", keras.__version__)
+print("Importing FastAPI...")
 from fastapi import FastAPI, UploadFile, File
+print("FastAPI imported.")
+
+print("Importing record_meeting...")
 from record import record_meeting
+print("record_meeting imported.")
+
+print("Importing transcribe...")
 from transcribe import transcribe
+print("transcribe imported.")
+
+print("Importing summarize_main...")
 from summarize import main as summarize_main
+print("summarize_main imported.")
+
+print("Importing query_faiss...")
 from search import query_faiss
+print("query_faiss imported.")
 
 app = FastAPI()
 
