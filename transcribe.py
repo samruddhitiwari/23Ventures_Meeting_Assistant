@@ -2,7 +2,7 @@ import subprocess
 import sys
 import os
 from datetime import datetime
-from parse import parse_query  # NEW IMPORT
+from query_parser import parse_query  # NEW IMPORT
 from modules.embed import get_embedding  # NEW IMPORT
 
 def transcribe(input_path: str):
