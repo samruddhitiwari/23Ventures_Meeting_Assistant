@@ -3,7 +3,7 @@ import sys
 import os
 from datetime import datetime
 from query_parser import parse_query  # NEW IMPORT
-from embed import get_embedding  # NEW IMPORT
+#from embed import get_embedding  # NEW IMPORT
 
 def transcribe(input_path: str):
     try:
