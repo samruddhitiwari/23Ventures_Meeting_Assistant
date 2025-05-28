@@ -2,7 +2,7 @@ from transformers import pipeline
 from tkinter import Tk, filedialog, messagebox
 import os
 from datetime import datetime
-from modules.embed import get_embedding  # Add this import
+from embed import get_embedding  # Add this import
 
 def summarize_text_local(text):
     summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
