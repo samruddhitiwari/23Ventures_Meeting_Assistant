@@ -1,13 +1,19 @@
-from transformers import pipeline
+import spacy
 from tkinter import Tk, filedialog, messagebox
 import os
 from datetime import datetime
-from embed import get_embedding  # Add this import
+from embed import get_embedding
+
+nlp = spacy.load("en_core_web_sm")
 
 def summarize_text_local(text):
-    summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-    summary_list = summarizer(text, max_length=150, min_length=40, do_sample=False)
-    return summary_list[0]['summary_text']
+    """
+    Summarizes the text using Spacy's NLP pipeline.
+    Extracts key sentences based on structure.
+    """
+    doc = nlp(text)
+    sentences = [sent.text for sent in doc.sents]  # Extract sentences
+    return " ".join(sentences[:3])  # Return first few sentences as summary
 
 def main():
     root = Tk()
@@ -49,11 +55,10 @@ def main():
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(summary)
 
- 
     embedding = get_embedding(summary)
     embedding_file = os.path.join(output_dir, f"{timestamp.strftime('%H-%M-%S')}_summary_embedding.txt")
-    with open(embedding_file, 'w', encoding='utf-8') as f:
-        f.write(','.join(map(str, embedding)))
+    with open(embedding_file, 'w', encoding="utf-8") as f:
+        f.write(",".join(map(str, embedding)))
 
     messagebox.showinfo("Success", f"Summary and embedding saved at:\n{output_file}\n{embedding_file}")
 
