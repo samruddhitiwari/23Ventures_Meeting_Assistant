@@ -1,16 +1,14 @@
-from sentence_transformers import SentenceTransformer
+import numpy as np
+import spacy
 
-
-EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
-
-def load_embedder():
-    """Return a SentenceTransformer instance for embedding texts."""
-    return SentenceTransformer(EMBED_MODEL_NAME)
+nlp = spacy.load("en_core_web_md")
 
 def get_embedding(text):
-    """
-    Generate and return the embedding for the given text using the model.
-    Returns a list of floats (the embedding vector).
-    """
-    model = load_embedder()
-    return model.encode(text)
+    """Generate a single embedding for the entire text."""
+    doc = nlp(text)
+    vectors = np.array([token.vector for token in doc if token.has_vector])
+
+    if len(vectors) == 0:
+        return np.zeros(nlp("test").vector.shape)  # Default zero vector if no embeddings exist
+
+    return np.mean(vectors, axis=0)  # Average word embeddings to create a sentence-level vector
