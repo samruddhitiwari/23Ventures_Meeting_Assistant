@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "frontend/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/record",
+      "dest": "server.py"
+    },
+    {
+      "src": "/stop",
+      "dest": "server.py"
+    },
+    {
+      "src": "/summarize",
+      "dest": "server.py"
+    },
+    {
+      "src": "/search",
+      "dest": "server.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
+  ]
+}
