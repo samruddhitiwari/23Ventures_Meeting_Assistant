@@ -1,0 +1,70 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a2e; /* Deep blackish-purple */
+    color: #e3e3e3; /* Soft off-white for readability */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Header */
+header {
+    background-color: #3f0071; /* Dark purple */
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Buttons */
+button {
+    background-color: #6a0dad; /* Rich purple */
+    color: #ffffff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #4b0082; /* Slightly darker purple */
+}
+
+/* Input Fields */
+input, textarea {
+    background-color: #23233f; /* Dark muted purple */
+    color: #ffffff;
+    border: 2px solid #6a0dad;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 80%;
+    margin: 10px auto;
+    display: block;
+}
+
+/* Card / Container */
+.container {
+    background-color: #29293d; /* Deep black-purple blend */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Footer */
+footer {
+    background-color: #3f0071;
+    color: #fff;
+    padding: 10px;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
