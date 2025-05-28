@@ -47,3 +47,11 @@ def summarize(file: UploadFile = File(...)):
 @app.get("/search")
 def search(query: str):
     return query_faiss(query)
+
+
+from fastapi import FastAPI
+app = FastAPI()
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
